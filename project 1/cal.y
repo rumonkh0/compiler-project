@@ -8,7 +8,7 @@ extern int yylineno;
 void yyerror(const char *s);
 %}
 
-%token INT FOR RETURN LPAREN RPAREN LBRACE RBRACE SEMICOLON ASSIGN INT_VALUE IDENTIFIER FLOAT CHAR DOUBLE ADD SUB MUL DIV MOD GT GE LT LE INC DEC MAIN
+%token INT FOR RETURN LPAREN RPAREN LBRACE RBRACE SEMICOLON ASSIGN INT_VALUE IDENTIFIER FLOAT CHAR DOUBLE ADD SUB MUL DIV MOD GT GE LT LE INC DEC MAIN COMMA
 %start program
 %left ADD SUB
 %left MUL DIV
@@ -30,7 +30,7 @@ parameter_list_opt   : parameter_list
                      ;
 
 parameter_list       : parameter
-                     | parameter_list ',' parameter
+                     | parameter_list COMMA parameter
                      ;
 
 parameter            : data_type IDENTIFIER

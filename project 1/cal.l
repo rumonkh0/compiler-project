@@ -35,6 +35,7 @@ id ({us}|{letter})({letter}|{us}|{digit})*
 "++"                { return INC; }
 "--"                { return DEC; }
 ";"                 { return SEMICOLON; }
+","                 { return COMMA; }
 "="                 { return ASSIGN; }
 "+"                 { return(ADD); }
 "-"                 { return(SUB); }
