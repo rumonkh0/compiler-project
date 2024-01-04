@@ -1,7 +1,6 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
-#include<time.h>
 extern int yylex();
 extern char* yytext;
 extern int yylineno;
@@ -102,9 +101,7 @@ void yyerror(const char *s) {
 }
 
 int main() {
-    time_t tm;
-    time(&tm);
     yyparse();
-    printf("Parsing Successful FOR THIS FUNCTION %s\n", ctime(&tm));
+    printf("Parsing Successful FOR THIS FUNCTION \n");
     return 0;
 }

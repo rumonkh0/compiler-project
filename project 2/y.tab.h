@@ -86,7 +86,9 @@ extern int yydebug;
     ELSE = 287,                    /* ELSE  */
     TRU = 288,                     /* TRU  */
     FLS = 289,                     /* FLS  */
-    EQ = 290                       /* EQ  */
+    EQ = 290,                      /* EQ  */
+    PRINT = 291,                   /* PRINT  */
+    STRING = 292                   /* STRING  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -128,6 +130,8 @@ extern int yydebug;
 #define TRU 288
 #define FLS 289
 #define EQ 290
+#define PRINT 291
+#define STRING 292
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

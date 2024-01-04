@@ -18,6 +18,7 @@ id ({us}|{letter})({letter}|{us}|{digit})*
 %%
 [ \t\n]             ; // Skip whitespace
 "//"(.*)            ;
+
 "int"               { return INT; }
 "float"             { return FLOAT; }
 "char"              { return CHAR; }
@@ -49,7 +50,9 @@ id ({us}|{letter})({letter}|{us}|{digit})*
 "*"                 { return(MUL); }
 "/"                 { return(DIV); }
 "%"                 { return(MOD); }
+"printf"            { return PRINT; }
+\".*\"          	{return STRING;}
 {number}            {yylval = atoi(yytext);  return(INT_VALUE);}
-{id}                { return(IDENTIFIER);}
+{id}                {return(IDENTIFIER);}
 .                   ;
 %%

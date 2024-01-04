@@ -4,10 +4,10 @@
 extern int yylex();
 extern char* yytext;
 extern int yylineno;
-void yyerror(const char *s);
+void yyerror(const char *err);
 %}
 
-%token INT FOR RETURN LPAREN RPAREN LBRACE RBRACE SEMICOLON ASSIGN INT_VALUE IDENTIFIER FLOAT CHAR DOUBLE ADD SUB MUL DIV MOD GT GE LT LE INC DEC MAIN COMMA BOOL IF ELSE TRU FLS EQ
+%token INT FOR RETURN LPAREN RPAREN LBRACE RBRACE SEMICOLON ASSIGN INT_VALUE IDENTIFIER FLOAT CHAR DOUBLE ADD SUB MUL DIV MOD GT GE LT LE INC DEC MAIN COMMA BOOL IF ELSE TRU FLS EQ PRINT STRING
 %start program
 %left ADD SUB
 %left MUL DIV
@@ -54,6 +54,7 @@ statement : declaration SEMICOLON  { printf("Declaration\n"); }
           | loop
           | if_statement
           | if_else_statement
+          | PRINT LPAREN STRING RPAREN SEMICOLON 
           | function_call SEMICOLON
           | RETURN expression SEMICOLON
           ;
@@ -104,10 +105,8 @@ counter: INC | DEC
 
 %%
 
-void yyerror(const char *s) {
-    time_t tm;
-    time(&tm);
-    fprintf(stderr, "Parser error: %s at line %d\n", s, yylineno);
+void yyerror(const char *err) {
+    fprintf(stderr, "Parser error: %s at line %d\n", err, yylineno);
 }
 
 int main() {
