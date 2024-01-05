@@ -18,7 +18,7 @@ id ({us}|{letter})({letter}|{us}|{digit})*
 %%
 [ \t\n]             ; // Skip whitespace
 "//"(.*)            ;
-
+"#include <stdio.h>"  { return HEAD; }
 "int"               { return INT; }
 "float"             { return FLOAT; }
 "char"              { return CHAR; }
@@ -29,9 +29,12 @@ id ({us}|{letter})({letter}|{us}|{digit})*
 "else"              { return ELSE; }
 "main"              { return MAIN; }
 "return"            { return RETURN; }
+"scanf"             { return SCANF; }
 "true"              { return TRU; }
 "false"             { return FLS; }
+"%d"                { return FORMAT_SPECIFIER; }
 "("                 { return LPAREN; }
+"&"                 { return AMPERSAND; }
 ")"                 { return RPAREN; }
 "{"                 { return LBRACE; }
 "}"                 { return RBRACE; }

@@ -7,13 +7,15 @@ extern int yylineno;
 void yyerror(const char *err);
 %}
 
-%token INT FOR RETURN LPAREN RPAREN LBRACE RBRACE SEMICOLON ASSIGN INT_VALUE IDENTIFIER FLOAT CHAR DOUBLE ADD SUB MUL DIV MOD GT GE LT LE INC DEC MAIN COMMA BOOL IF ELSE TRU FLS EQ PRINT STRING
+%token INT FOR RETURN LPAREN RPAREN LBRACE RBRACE SEMICOLON ASSIGN INT_VALUE IDENTIFIER FLOAT CHAR DOUBLE ADD SUB MUL DIV MOD GT GE LT LE INC DEC MAIN COMMA BOOL IF ELSE TRU FLS EQ PRINT STRING HEAD FORMAT_SPECIFIER AMPERSAND SCANF
 %start program
 %left ADD SUB
 %left MUL DIV
 %%
 
-program: function_declarations main;
+program: HEAD function_declarations main
+        | HEAD  main
+        ;
 
 main: data_type MAIN LPAREN parameter_list_opt RPAREN compound_statement { printf("Main Function declaration\n"); }
 
@@ -38,13 +40,6 @@ parameter            : data_type IDENTIFIER
 compound_statement   : LBRACE statements RBRACE 
                      ;
 
-/*statement_list     :  Statements 
-                     ;*/
-
-
-/*program : statements
-        ;*/
-
 statements : statement
            | statements statement
            ;
@@ -54,14 +49,19 @@ statement : declaration SEMICOLON  { printf("Declaration\n"); }
           | loop
           | if_statement
           | if_else_statement
+          | if_elseif_else_statement
           | PRINT LPAREN STRING RPAREN SEMICOLON 
           | function_call SEMICOLON
           | RETURN expression SEMICOLON
+          | SCANF LPAREN STRING COMMA AMPERSAND IDENTIFIER RPAREN SEMICOLON
+          | PRINT LPAREN STRING COMMA IDENTIFIER RPAREN SEMICOLON
           ;
 
 if_statement : IF LPAREN expression RPAREN compound_statement;
 
 if_else_statement : IF LPAREN expression RPAREN compound_statement ELSE compound_statement;
+
+if_elseif_else_statement : IF LPAREN expression RPAREN  compound_statement ELSE IF LPAREN expression RPAREN compound_statement ELSE compound_statement;
 
 declaration : data_type IDENTIFIER
             ;
@@ -98,7 +98,13 @@ data_type            : INT
 op  : ADD
     | SUB
     | MUL
-    | DIV | GT | GE | LT | LE | MOD | EQ
+    | DIV 
+    | GT 
+    | GE 
+    | LT 
+    | LE 
+    | MOD 
+    | EQ
     ;
 
 counter: INC | DEC

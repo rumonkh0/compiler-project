@@ -1,24 +1,27 @@
-bool isPrime(int num) {
-    if (num <= 1) {
-        return false;
-    }
-    for (int i = 2; i * i <= num; i++) {
-        if (num % i == 0) {
-            return false;
-        }
-    }
-    return true;
-}
+#include <stdio.h>
 
 int main() {
-    int number = 9;
-    int result = isPrime(number);
+    float celcius;
+    float fahrenheit;
+    int choice;
 
-    if (result) {
-        printf("Prime number.\n");
+    printf("Temperature Conversion\n");
+    printf("1. Fahrenheit to Celsius\n");
+    printf("2. Celsius to Fahrenheit\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    if (choice == 1) {
+        printf("Enter temperature in Fahrenheit: ");
+        scanf("%f", &fahrenheit);
+        celcius = (fahrenheit - 32) * 5 / 9;
+        printf("%.2f \n", celsius);
+    } else if (choice == 2) {
+        printf("Enter temperature in Celsius: ");
+        scanf("%f", &celsius);
+        fahrenheit = (celsius * 9 / 5) + 32;
+        printf("%.2f \n", fahrenheit);
     } else {
-        printf("Not a prime number.\n");
+        printf("Invalid choice\n");
     }
-
-    return 0;
 }

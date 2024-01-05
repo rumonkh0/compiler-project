@@ -1,4 +1,6 @@
-Function declaration
+Declaration
+Declaration
+Declaration
 Declaration with assignment
 Declaration with assignment
 Main Function declaration

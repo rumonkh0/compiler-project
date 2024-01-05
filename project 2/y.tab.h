@@ -88,7 +88,11 @@ extern int yydebug;
     FLS = 289,                     /* FLS  */
     EQ = 290,                      /* EQ  */
     PRINT = 291,                   /* PRINT  */
-    STRING = 292                   /* STRING  */
+    STRING = 292,                  /* STRING  */
+    HEAD = 293,                    /* HEAD  */
+    FORMAT_SPECIFIER = 294,        /* FORMAT_SPECIFIER  */
+    AMPERSAND = 295,               /* AMPERSAND  */
+    SCANF = 296                    /* SCANF  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -132,6 +136,10 @@ extern int yydebug;
 #define EQ 290
 #define PRINT 291
 #define STRING 292
+#define HEAD 293
+#define FORMAT_SPECIFIER 294
+#define AMPERSAND 295
+#define SCANF 296
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
